@@ -11,6 +11,9 @@ public class HomePage {
     @FindBy(id = "overview-hero")
     WebElement homepageTitle_id;
 
+    @FindBy(id = "nav-btn-practice")
+    WebElement learningMaterialButton_id;
+
     public HomePage(WebDriver driver){
         this.driver=driver;
     }
@@ -19,5 +22,7 @@ public class HomePage {
         homepageTitle_id.isDisplayed();
     }
 
-
+    public void clickLearningMaterialButton(){
+        learningMaterialButton_id.click();
+    }
 }
