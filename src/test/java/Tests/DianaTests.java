@@ -29,7 +29,46 @@ public class DianaTests extends Base{
     public void clickLoginButtonTest() {
         loginPage.clickLoginButton();
     }
-
+    @Test(dependsOnMethods = "clickLoginButtonTest")
+    public void verifyLearningMaterialPageIsDisplayedTest() {
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+    }
+    @Test(dependsOnMethods = "verifyLearningMaterialPageIsDisplayedTest")
+     public void clickWebAutomationAdvanceTabTest() {
+         learningMaterialPage.clickWebAutomationAdvanceTab();
+    }
+    @Test(dependsOnMethods = "clickWebAutomationAdvanceTabTest")
+    public void verifyWebAutomationAdvancePageIsDisplayedTest() {
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+    }
+    @Test(dependsOnMethods = "verifyWebAutomationAdvancePageIsDisplayedTest")
+    public void selectDeviceTypeTest() {
+        webAutomationAdvancePage.selectDeviceType();
+    }
+    @Test(dependsOnMethods = "selectDeviceTypeTest")
+    public void selectBrandTest() {
+        webAutomationAdvancePage.selectBrand();
+    }
+    @Test(dependsOnMethods = "selectBrandTest")
+    public void selectStorageTest() {
+        webAutomationAdvancePage.selectStorage();
+    }
+    @Test(dependsOnMethods = "selectStorageTest")
+    public void selectColorTest() {
+        webAutomationAdvancePage.selectColor();
+    }
+    @Test(dependsOnMethods = "selectColorTest")
+    public void selectQuantityTest() {
+        webAutomationAdvancePage.selectQuantity();
+    }
+    @Test(dependsOnMethods = "selectQuantityTest")
+    public void enterDeliveryAddressTest() {
+        webAutomationAdvancePage.enterAddress();
+    }
+    @Test(dependsOnMethods = "enterDeliveryAddressTest")
+    public void clickNextTest() {
+        webAutomationAdvancePage.clickNext();
+    }
 
 
     @AfterTest
