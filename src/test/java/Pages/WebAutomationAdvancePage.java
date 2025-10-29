@@ -51,8 +51,8 @@ public class WebAutomationAdvancePage {
      deviceTypeDropDown_id.sendKeys(deviceType);
     }
 
-    public void selectBrand(String brand) {
-        brandDropDown_id.sendKeys(brand);
+    public void selectBrand(String deviceBrand) {
+        brandDropDown_id.sendKeys(deviceBrand);
     }
 
     public void selectStorage() {
