@@ -47,12 +47,12 @@ public class WebAutomationAdvancePage {
         inventoryHeader_id.isDisplayed();
     }
 
-    public void selectDeviceType() {
-     deviceTypeDropDown_id.sendKeys("phone");
+    public void selectDeviceType(String deviceType) {
+     deviceTypeDropDown_id.sendKeys(deviceType);
     }
 
-    public void selectBrand() {
-        brandDropDown_id.sendKeys("apple");
+    public void selectBrand(String brand) {
+        brandDropDown_id.sendKeys(brand);
     }
 
     public void selectStorage() {

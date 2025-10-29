@@ -43,11 +43,11 @@ public class DianaTests extends Base{
     }
     @Test(dependsOnMethods = "verifyWebAutomationAdvancePageIsDisplayedTest")
     public void selectDeviceTypeTest() {
-        webAutomationAdvancePage.selectDeviceType();
+        webAutomationAdvancePage.selectDeviceType("Phone");
     }
     @Test(dependsOnMethods = "selectDeviceTypeTest")
     public void selectBrandTest() {
-        webAutomationAdvancePage.selectBrand();
+        webAutomationAdvancePage.selectBrand("Apple");
     }
     @Test(dependsOnMethods = "selectBrandTest")
     public void selectStorageTest() {
