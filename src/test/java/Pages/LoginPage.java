@@ -18,13 +18,16 @@ public class LoginPage {
     WebElement loginpageTitle_id;
 
     @FindBy(id = "login-email")
-    WebElement emailAddressTextBox;
+    WebElement emailAddressTextBox_id;
 
     @FindBy(id = "login-password")
-    WebElement passwordTextBox;
+    WebElement passwordTextBox_id;
 
     @FindBy(id = "login-submit")
-    WebElement loginButton;
+    WebElement loginButton_id;
+
+    @FindBy(id = "signup-toggle")
+    WebElement signUpHereLink_id;
 
     public LoginPage(WebDriver driver){
         this.driver=driver;
@@ -33,19 +36,28 @@ public class LoginPage {
     public void verifyLoginPageIsDisplayed(){
        new WebDriverWait(driver, Duration.ofSeconds(10)).until(visibilityOf(loginpageTitle_id));
         loginpageTitle_id.isDisplayed();
+        System.out.println(loginpageTitle_id.getText());
     }
 
     public void enterEmailAddress(String email){
-        emailAddressTextBox.sendKeys(email);
+        emailAddressTextBox_id.clear();
+        emailAddressTextBox_id.sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        passwordTextBox.sendKeys(password);
+        passwordTextBox_id.clear();
+        passwordTextBox_id.sendKeys(password);
     }
 
     public void clickLoginButton() {
-        loginButton.click();
+        loginButton_id.click();
     }
+
+    public void clickSignUpLink() {
+        signUpHereLink_id.click();
+    }
+
+
 
 
 

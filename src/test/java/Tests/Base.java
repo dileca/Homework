@@ -1,9 +1,6 @@
 package Tests;
 
-import Pages.HomePage;
-import Pages.LearningMaterialPage;
-import Pages.LoginPage;
-import Pages.WebAutomationAdvancePage;
+import Pages.*;
 import Utils.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -17,4 +14,7 @@ public class Base {
     LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
     LearningMaterialPage learningMaterialPage = PageFactory.initElements(driver, LearningMaterialPage.class);
     WebAutomationAdvancePage webAutomationAdvancePage = PageFactory.initElements(driver, WebAutomationAdvancePage.class);
+    NextPage nextPage = PageFactory.initElements(driver, NextPage.class);
+    AboutUsPage aboutUsPage = PageFactory.initElements(driver, AboutUsPage.class);
+    RegistrationPage registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
 }

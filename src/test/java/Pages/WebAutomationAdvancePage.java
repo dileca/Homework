@@ -13,6 +13,8 @@ public class WebAutomationAdvancePage {
 
     WebDriver driver;
 
+    public static Double unitPrice;
+
     @FindBy(id = "inventory-title")
     WebElement inventoryHeader_id;
 
@@ -37,9 +39,21 @@ public class WebAutomationAdvancePage {
     @FindBy(id = "inventory-next-btn")
     WebElement nextButton_id;
 
+    @FindBy(id = "purchase-success-toast")
+    WebElement orderSuccessfulToast_id;
+
+    @FindBy(id = "unit-price-value")
+    WebElement unitPriceValue_id;
+
+    @FindBy(id = "quantity-label")
+    WebElement quantity_id;
+
+    @FindBy(id = "subtotal-value")
+    WebElement subtotal_id;
+
 
     public WebAutomationAdvancePage(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
     }
 
     public void verifyWebAutomationAdvancePageIsDisplayed() {
@@ -48,8 +62,10 @@ public class WebAutomationAdvancePage {
     }
 
     public void selectDeviceType(String deviceType) {
-     deviceTypeDropDown_id.sendKeys(deviceType);
+        deviceTypeDropDown_id.sendKeys(deviceType);
+
     }
+
 
     public void selectBrand(String deviceBrand) {
         brandDropDown_id.sendKeys(deviceBrand);
@@ -67,11 +83,28 @@ public class WebAutomationAdvancePage {
         quantityTextBox_id.click();
     }
 
-    public void enterAddress() {
-        deliveryAddressTextBox_id.sendKeys("123 Test Street");
+    public void enterAddress(String address) {
+        deliveryAddressTextBox_id.sendKeys(address);
     }
 
+
+
+
     public void clickNext() {
+        String stringUnitPrice = unitPriceValue_id.getText();
+        System.out.println(stringUnitPrice);
+
+        String stringUnitPriceWithoutR = stringUnitPrice.replace("R", "");
+        System.out.println(stringUnitPriceWithoutR);
+
+        unitPrice = Double.parseDouble(stringUnitPriceWithoutR);
+        System.out.println(unitPrice);
+
         nextButton_id.click();
     }
+
+    public void verifySuccessfulOrderToastDisplayed() {
+        orderSuccessfulToast_id.isDisplayed();
+    }
+
 }
