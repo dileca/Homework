@@ -24,8 +24,14 @@ public class WebAutomationAdvancePage {
     @FindBy(id = "brand")
     WebElement brandDropDown_id;
 
+    @FindBy(id = "storage-64GB")
+    WebElement smallStorage_id;
+
+    @FindBy(id = "storage-128GB")
+    WebElement mediumStorage_id;
+
     @FindBy(id = "storage-256GB")
-    WebElement storageRadioButton_id;
+    WebElement largeStorage_id;
 
     @FindBy(id = "color")
     WebElement colorDropDown_id;
@@ -46,10 +52,16 @@ public class WebAutomationAdvancePage {
     WebElement unitPriceValue_id;
 
     @FindBy(id = "quantity-label")
-    WebElement quantity_id;
+    WebElement qty_id;
 
     @FindBy(id = "subtotal-value")
     WebElement subtotal_id;
+
+    @FindBy(id = "cart-title")
+    WebElement cartQuantity_id;
+
+
+
 
 
     public WebAutomationAdvancePage(WebDriver driver) {
@@ -66,29 +78,44 @@ public class WebAutomationAdvancePage {
 
     }
 
-
     public void selectBrand(String deviceBrand) {
         brandDropDown_id.sendKeys(deviceBrand);
     }
 
-    public void selectStorage() {
-        storageRadioButton_id.click();
+    public void select64GBStorage() {
+        smallStorage_id.click();
     }
 
-    public void selectColor() {
-        colorDropDown_id.sendKeys("gold");
+    public void select128GBStorage() {
+        mediumStorage_id.click();
     }
 
-    public void selectQuantity() {
-        quantityTextBox_id.click();
+    public void select256GBStorage() {
+        largeStorage_id.click();
+    }
+
+    public void selectColor(String color) {
+        colorDropDown_id.sendKeys(color);
+    }
+
+    public void selectQuantity(String qty) {
+        quantityTextBox_id.clear();
+        quantityTextBox_id.sendKeys(qty);
     }
 
     public void enterAddress(String address) {
         deliveryAddressTextBox_id.sendKeys(address);
     }
 
+    public void verifyUnitPrice() {
+        String stringUnitPrice = unitPriceValue_id.getText();
+        System.out.println(stringUnitPrice);
+    }
 
-
+    public void verifySubTotal() {
+        String stringSubtotal = subtotal_id.getText();
+        System.out.println(stringSubtotal);
+    }
 
     public void clickNext() {
         String stringUnitPrice = unitPriceValue_id.getText();
@@ -106,5 +133,11 @@ public class WebAutomationAdvancePage {
     public void verifySuccessfulOrderToastDisplayed() {
         orderSuccessfulToast_id.isDisplayed();
     }
+
+    public void verifyCartQuantity() {
+        String stringCartQuantity = cartQuantity_id.getText();
+        System.out.println(stringCartQuantity);
+    }
+
 
 }

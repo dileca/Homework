@@ -1,10 +1,13 @@
 package Pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -57,8 +60,20 @@ public class LoginPage {
         signUpHereLink_id.click();
     }
 
-
-
+    public void confirmInvalidPasswordPopUpDisplays() {
+        //Wait for the Alert to be Present
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Alert alert1 = wait.until(ExpectedConditions.alertIsPresent());
+        //Switch to the Alert
+        Alert alert2 = driver.switchTo().alert();
+        //Retrieve the Alert Message
+        String alertMessage = alert2.getText();
+        //Validate the Message
+        String expectedMessage = "Invalid email or password";
+        Assert.assertEquals(alertMessage, expectedMessage, "Alert message mismatch!");
+        //Click OK
+        alert2.accept();
+    }
 
 
 }

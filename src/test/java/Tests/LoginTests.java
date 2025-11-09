@@ -1,5 +1,6 @@
 package Tests;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class LoginTests extends Base {
@@ -23,7 +24,7 @@ public class LoginTests extends Base {
         loginPage.enterEmailAddress("diana@test.co.za");
         loginPage.enterPassword("1tester123");
         loginPage.clickLoginButton();
-        //put code for the pop up code
+        loginPage.confirmInvalidPasswordPopUpDisplays();
     }
 
     @Test
@@ -61,6 +62,9 @@ public class LoginTests extends Base {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-
+    @AfterTest
+    public void closeBrowser() {
+        driver.quit();
+    }
 
 }

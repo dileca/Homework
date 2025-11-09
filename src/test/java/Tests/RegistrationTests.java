@@ -1,5 +1,6 @@
 package Tests;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class RegistrationTests extends Base{
@@ -87,5 +88,10 @@ public void verifyBadEmailFormatIsNotAccepted() throws InterruptedException {
      Thread.sleep(2000);
      registrationPage.confirmSuccessfulRegistrationPopUpDisplays();
  }
+
+    @AfterTest
+    public void closeBrowser() {
+        driver.quit();
+    }
 
 }

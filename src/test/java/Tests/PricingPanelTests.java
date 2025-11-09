@@ -1,67 +1,115 @@
 package Tests;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class PricingPanelTests extends Base{
 
-    public void verifyHomePageIsDisplayedTest() {
+
+    @Test
+    public void verifyUnitAndSubtotalIsZeroWhenNoDeviceAndStorageIsSelected() {
         homePage.verifyHomePageIsDisplayed();
-    }
-    @Test(dependsOnMethods = "verifyHomePageIsDisplayedTest")
-    public void clickLearningMaterialButtonTest() {
         homePage.clickLearningMaterialButton();
-    }
-    @Test(dependsOnMethods = "clickLearningMaterialButtonTest")
-    public void verifyLoginPageIsDisplayedTest() {
         loginPage.verifyLoginPageIsDisplayed();
-    }
-    @Test(dependsOnMethods = "verifyLoginPageIsDisplayedTest")
-    public void enterEmailAddressTest() {
         loginPage.enterEmailAddress("diana@test.co.za");
-    }
-    @Test(dependsOnMethods = "enterEmailAddressTest")
-    public void enterPasswordTest() {
         loginPage.enterPassword("tester123");
-    }
-    @Test(dependsOnMethods = "enterPasswordTest")
-    public void clickLoginButtonTest() {
         loginPage.clickLoginButton();
-    }
-    @Test(dependsOnMethods = "clickLoginButtonTest")
-    public void verifyLearningMaterialPageIsDisplayedTest() {
         learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-    }
-    @Test(dependsOnMethods = "verifyLearningMaterialPageIsDisplayedTest")
-    public void clickWebAutomationAdvanceTabTest() {
         learningMaterialPage.clickWebAutomationAdvanceTab();
-    }
-    @Test(dependsOnMethods = "clickWebAutomationAdvanceTabTest")
-    public void verifyWebAutomationAdvancePageIsDisplayedTest() {
         webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.verifyUnitPrice();
+        webAutomationAdvancePage.verifySubTotal();
     }
-    //No device+storage → Unit: —, Subtotal: —
-    //Verify unit and device is zero
 
-    //Phone 64GB Qty1 → Unit R400.00 Subtotal R400.00
-    @Test(dependsOnMethods = "verifyWebAutomationAdvancePageIsDisplayedTest")
-    public void selectDeviceTypeTest() {
+    @Test
+    public void verifyUnitAnSubtotalWhen64GBPhoneIsSelected() {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Phone");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select64GBStorage();
+        webAutomationAdvancePage.verifyUnitPrice();
+        webAutomationAdvancePage.verifySubTotal();
+}
+@Test
+public void verifyUnityAndSubtotalWhenTwo128GBPhonesAreSelected() throws InterruptedException {
+    homePage.verifyHomePageIsDisplayed();
+    homePage.clickLearningMaterialButton();
+    loginPage.verifyLoginPageIsDisplayed();
+    loginPage.enterEmailAddress("diana@test.co.za");
+    loginPage.enterPassword("tester123");
+    loginPage.clickLoginButton();
+    learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+    learningMaterialPage.clickWebAutomationAdvanceTab();
+    webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+    webAutomationAdvancePage.selectDeviceType("Phone");
+    webAutomationAdvancePage.selectBrand("Apple");
+    webAutomationAdvancePage.select128GBStorage();
+    webAutomationAdvancePage.selectColor("Gold");
+    webAutomationAdvancePage.selectQuantity("2");
+    Thread.sleep(2000);
+    webAutomationAdvancePage.verifyUnitPrice();
+    webAutomationAdvancePage.verifySubTotal();
+}
+
+    @Test
+    public void verifyUnityAndSubtotalWhen256GBLaptopIsSelected() throws InterruptedException {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.selectDeviceType("Laptop");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("Gold");
+        webAutomationAdvancePage.selectQuantity("2");
+        Thread.sleep(2000);
+        webAutomationAdvancePage.verifyUnitPrice();
+        webAutomationAdvancePage.verifySubTotal();
     }
 
-    public void verifyUnitValueDisplaysR400Test() {
-
+    @Test
+    public void verifyUnitAndSubtotalResetsWhenDeviceIsCleared() throws InterruptedException {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.selectDeviceType("Laptop");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("Gold");
+        webAutomationAdvancePage.selectQuantity("2");
+        Thread.sleep(2000);
+        webAutomationAdvancePage.verifyUnitPrice();
+        webAutomationAdvancePage.verifySubTotal();
+        webAutomationAdvancePage.selectDeviceType("Select");
+        Thread.sleep(2000);
+        webAutomationAdvancePage.verifyUnitPrice();
+        webAutomationAdvancePage.verifySubTotal();
     }
-//    String stringUnitPrice = unitPriceValue_id.getText();
-//
-//        System.out.println(stringUnitPrice);
-//    String stringUnitPriceWithoutR = stringUnitPrice.replace("R", "");
-//        System.out.println(stringUnitPriceWithoutR+1);
-//    Double unitPriceDouble = Double.parseDouble(stringUnitPriceWithoutR);
-//        System.out.println(unitPriceDouble);
 
 
-
-
+    @AfterTest
+    public void closeBrowser() {
+        driver.quit();
+    }
 
 
 
