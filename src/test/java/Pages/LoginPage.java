@@ -32,17 +32,17 @@ public class LoginPage {
     @FindBy(id = "signup-toggle")
     WebElement signUpHereLink_id;
 
-    public LoginPage(WebDriver driver){
-        this.driver=driver;
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public void verifyLoginPageIsDisplayed(){
-       new WebDriverWait(driver, Duration.ofSeconds(10)).until(visibilityOf(loginpageTitle_id));
+    public void verifyLoginPageIsDisplayed() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(visibilityOf(loginpageTitle_id));
         loginpageTitle_id.isDisplayed();
         System.out.println(loginpageTitle_id.getText());
     }
 
-    public void enterEmailAddress(String email){
+    public void enterEmailAddress(String email) {
         emailAddressTextBox_id.clear();
         emailAddressTextBox_id.sendKeys(email);
     }
@@ -68,6 +68,7 @@ public class LoginPage {
         Alert alert2 = driver.switchTo().alert();
         //Retrieve the Alert Message
         String alertMessage = alert2.getText();
+        System.out.println(alert2.getText());
         //Validate the Message
         String expectedMessage = "Invalid email or password";
         Assert.assertEquals(alertMessage, expectedMessage, "Alert message mismatch!");

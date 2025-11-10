@@ -35,11 +35,6 @@ public class DianaTests extends Base {
     }
 
 
-
-
-
-
-
     @AfterTest
     public void closeBrowser() {
         driver.quit();

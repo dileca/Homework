@@ -3,26 +3,10 @@ package Tests;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
-public class PricingPanelTests extends Base {
-
-
-    @Test
-    public void verifyUnitAndSubtotalIsZeroWhenNoDeviceAndStorageIsSelected() {
-        homePage.verifyHomePageIsDisplayed();
-        homePage.clickLearningMaterialButton();
-        loginPage.verifyLoginPageIsDisplayed();
-        loginPage.enterEmailAddress("diana@test.co.za");
-        loginPage.enterPassword("tester123");
-        loginPage.clickLoginButton();
-        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-        learningMaterialPage.clickWebAutomationAdvanceTab();
-        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
-        webAutomationAdvancePage.verifyUnitPrice();
-        webAutomationAdvancePage.verifySubTotal();
-    }
+public class DiscountCodeTests extends Base {
 
     @Test
-    public void verifyUnitAnSubtotalWhen64GBPhoneIsSelected() {
+    public void verifySAVE10DiscountMessage() {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.verifyLoginPageIsDisplayed();
@@ -34,13 +18,20 @@ public class PricingPanelTests extends Base {
         webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Phone");
         webAutomationAdvancePage.selectBrand("Apple");
-        webAutomationAdvancePage.select64GBStorage();
-        webAutomationAdvancePage.verifyUnitPrice();
-        webAutomationAdvancePage.verifySubTotal();
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("1");
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectStandardShippingMethod();
+        nextPage.selectNoWarrantyOption();
+        nextPage.enterDiscountCode("SAVE10");
+        nextPage.clickApplyDiscountButton();
+        nextPage.verifyDiscountAppliedMessage();
     }
 
     @Test
-    public void verifyUnityAndSubtotalWhenTwo128GBPhonesAreSelected() throws InterruptedException {
+    public void messageUpdatesWhenEnteringSAVE20AfterSAVE10() {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.verifyLoginPageIsDisplayed();
@@ -52,16 +43,23 @@ public class PricingPanelTests extends Base {
         webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Phone");
         webAutomationAdvancePage.selectBrand("Apple");
-        webAutomationAdvancePage.select128GBStorage();
-        webAutomationAdvancePage.selectColor("Gold");
-        webAutomationAdvancePage.selectQuantity("2");
-        Thread.sleep(2000);
-        webAutomationAdvancePage.verifyUnitPrice();
-        webAutomationAdvancePage.verifySubTotal();
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("1");
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectStandardShippingMethod();
+        nextPage.selectNoWarrantyOption();
+        nextPage.enterDiscountCode("SAVE10");
+        nextPage.clickApplyDiscountButton();
+        nextPage.verifyDiscountAppliedMessage();
+        nextPage.enterDiscountCode("SAVE20");
+        nextPage.clickApplyDiscountButton();
+        nextPage.verifyDiscountAppliedMessage();
     }
 
     @Test
-    public void verifyUnityAndSubtotalWhen256GBLaptopIsSelected() throws InterruptedException {
+    public void invalidCode() {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.verifyLoginPageIsDisplayed();
@@ -71,18 +69,22 @@ public class PricingPanelTests extends Base {
         learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
         learningMaterialPage.clickWebAutomationAdvanceTab();
         webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
-        webAutomationAdvancePage.selectDeviceType("Laptop");
+        webAutomationAdvancePage.selectDeviceType("Phone");
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select256GBStorage();
-        webAutomationAdvancePage.selectColor("Gold");
-        webAutomationAdvancePage.selectQuantity("2");
-        Thread.sleep(2000);
-        webAutomationAdvancePage.verifyUnitPrice();
-        webAutomationAdvancePage.verifySubTotal();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("1");
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectStandardShippingMethod();
+        nextPage.selectNoWarrantyOption();
+        nextPage.enterDiscountCode("SAVE 30");
+        nextPage.clickApplyDiscountButton();
+        nextPage.verifyDiscountAppliedMessage();
     }
 
     @Test
-    public void verifyUnitAndSubtotalResetsWhenDeviceIsCleared() throws InterruptedException {
+    public void removeDiscount() throws InterruptedException {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.verifyLoginPageIsDisplayed();
@@ -92,18 +94,23 @@ public class PricingPanelTests extends Base {
         learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
         learningMaterialPage.clickWebAutomationAdvanceTab();
         webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
-        webAutomationAdvancePage.selectDeviceType("Laptop");
+        webAutomationAdvancePage.selectDeviceType("Phone");
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select256GBStorage();
-        webAutomationAdvancePage.selectColor("Gold");
-        webAutomationAdvancePage.selectQuantity("2");
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("1");
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectStandardShippingMethod();
+        nextPage.selectNoWarrantyOption();
+        nextPage.enterDiscountCode("SAVE10");
+        nextPage.clickApplyDiscountButton();
+        nextPage.verifyDiscountAppliedMessage();
+        nextPage.clearDiscountCodeTextBox();
         Thread.sleep(2000);
-        webAutomationAdvancePage.verifyUnitPrice();
-        webAutomationAdvancePage.verifySubTotal();
-        webAutomationAdvancePage.selectDeviceType("Select");
+        nextPage.clickApplyDiscountButton();
         Thread.sleep(2000);
-        webAutomationAdvancePage.verifyUnitPrice();
-        webAutomationAdvancePage.verifySubTotal();
+        nextPage.verifyDiscountAppliedMessage();
     }
 
 
@@ -111,6 +118,4 @@ public class PricingPanelTests extends Base {
     public void closeBrowser() {
         driver.quit();
     }
-
-
 }

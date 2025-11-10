@@ -12,7 +12,7 @@ public class AboutUsPage {
     WebElement learningMaterialButton_id;
 
     public AboutUsPage(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
     }
 
     public void clickLearningMaterialsTab() {

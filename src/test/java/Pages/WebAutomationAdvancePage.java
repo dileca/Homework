@@ -61,9 +61,6 @@ public class WebAutomationAdvancePage {
     WebElement cartQuantity_id;
 
 
-
-
-
     public WebAutomationAdvancePage(WebDriver driver) {
         this.driver = driver;
     }

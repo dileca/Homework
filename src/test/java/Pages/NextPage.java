@@ -21,8 +21,17 @@ public class NextPage {
     @FindBy(id = "shipping-option-standard")
     WebElement standardShippingOption_id;
 
+    @FindBy(id = "shipping-option-express")
+    WebElement expressShippingOption_id;
+
     @FindBy(id = "warranty-option-none")
     WebElement noWarrantyOption_id;
+
+    @FindBy(id = "warranty-option-1yr")
+    WebElement oneYearWarrantyOption_id;
+
+    @FindBy(id = "warranty-option-2yr")
+    WebElement twoYearWarrantyOption_id;
 
     @FindBy(id = "discount-code")
     WebElement discountCodeTextBox_id;
@@ -39,13 +48,18 @@ public class NextPage {
     @FindBy(id = "breakdown-total-value")
     WebElement totalValue_id;
 
+    @FindBy(id = "breakdown-shipping-value")
+    WebElement shippingValue_id;
 
+    @FindBy(id = "breakdown-warranty-value")
+    WebElement warrantyValue_id;
 
-
+    @FindBy(id = "discount-feedback")
+    WebElement discountAppliedMessage_id;
 
 
     public NextPage(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
     }
 
     public void verifyNextPageIsDisplayed() {
@@ -57,17 +71,29 @@ public class NextPage {
         standardShippingOption_id.click();
     }
 
+    public void selectExpressShippingMethod() {
+        expressShippingOption_id.click();
+    }
+
     public void selectNoWarrantyOption() {
         noWarrantyOption_id.click();
     }
 
+    public void select1YearWarrantyOption() {
+        oneYearWarrantyOption_id.click();
+    }
+
+    public void select2YearWarrantyOption() {
+        twoYearWarrantyOption_id.click();
+    }
+
     public void enterDiscountCode(String discountCode) {
+        discountCodeTextBox_id.clear();
         discountCodeTextBox_id.sendKeys(discountCode);
     }
 
-    public void clickApplyDiscountButton() throws InterruptedException {
+    public void clickApplyDiscountButton() {
         discountApplyButton_id.click();
-
     }
 
     public void verifyDiscountApplied() {
@@ -81,7 +107,7 @@ public class NextPage {
         Double actualTotalPrice = Double.parseDouble(stringTotalValueWithoutR);
         System.out.println(actualTotalPrice);
 
-        Assert.assertEquals(expectedTotalPrice,actualTotalPrice);
+        Assert.assertEquals(expectedTotalPrice, actualTotalPrice);
     }
 
     public void clickAddToCartButton() {
@@ -92,15 +118,24 @@ public class NextPage {
         confirmPurchaseButton_id.click();
     }
 
+    public void verifyShippingChargeInPricingBreakdown() {
+        shippingValue_id.getText();
+        System.out.println(shippingValue_id.getText());
+    }
 
+    public void verifyWarrantyChargeInPricingBreakdown() {
+        warrantyValue_id.getText();
+        System.out.println(warrantyValue_id.getText());
+    }
 
+    public void verifyDiscountAppliedMessage() {
+        discountAppliedMessage_id.getText();
+        System.out.println(discountAppliedMessage_id.getText());
+    }
 
-
-
-
-
-
-
+    public void clearDiscountCodeTextBox() {
+        discountCodeTextBox_id.clear();
+    }
 
 
 }

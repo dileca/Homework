@@ -5,8 +5,8 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends Base {
 
-    //Valid Credentials
-   @Test
+
+    @Test
     public void verifySuccessfulLogin() {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();

@@ -26,7 +26,7 @@ public class LearningMaterialPage {
     WebElement logoutButton_id;
 
     public LearningMaterialPage(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
     }
 
     public void verifyLearningMaterialPageIsDisplayed() {
@@ -35,8 +35,8 @@ public class LearningMaterialPage {
         System.out.println(welcomeHeader_id.getText());
     }
 
-     public void clickWebAutomationAdvanceTab() {
-         webAutomationAdvanceTab_id.click();
+    public void clickWebAutomationAdvanceTab() {
+        webAutomationAdvanceTab_id.click();
     }
 
     public void clickAboutUsTab() {
@@ -46,12 +46,6 @@ public class LearningMaterialPage {
     public void clickLogoutButton() {
         logoutButton_id.click();
     }
-
-
-
-
-
-
 
 
 }

@@ -19,16 +19,16 @@ public class HomePage {
     @FindBy(id = "nav-btn-practice")
     WebElement learningMaterialButton_id;
 
-    public HomePage(WebDriver driver){
-        this.driver=driver;
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public void verifyHomePageIsDisplayed(){
+    public void verifyHomePageIsDisplayed() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(visibilityOf(homepageTitle_id)); // used whenever there's a refresh
         homepageTitle_id.isDisplayed();
     }
 
-    public void clickLearningMaterialButton(){
+    public void clickLearningMaterialButton() {
         learningMaterialButton_id.click();
     }
 }

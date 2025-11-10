@@ -79,6 +79,7 @@ public class RegistrationPage {
         Alert alert2 = driver.switchTo().alert();
         //Retrieve the Alert Message
         String alertMessage = alert2.getText();
+        System.out.println(alert2.getText());
         //Validate the Message
         String expectedMessage = "Registration successful! You can now login with your credentials.";
         Assert.assertEquals(alertMessage, expectedMessage, "Alert message mismatch!");
@@ -86,7 +87,7 @@ public class RegistrationPage {
         alert2.accept();
     }
 
-        public void confirmMismatchPasswordPopUpDisplays() {
+    public void confirmMismatchPasswordPopUpDisplays() {
         //Wait for the Alert to be Present
         WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
         Alert alert3 = wait2.until(ExpectedConditions.alertIsPresent());
@@ -94,6 +95,7 @@ public class RegistrationPage {
         Alert alert4 = driver.switchTo().alert();
         //Retrieve the Alert Message
         String alertMessage2 = alert3.getText();
+        System.out.println(alert3.getText());
         //Validate the Message
         String expectedMessage2 = "Passwords do not match!";
         Assert.assertEquals(alertMessage2, expectedMessage2, "Alert message mismatch!");
@@ -109,6 +111,7 @@ public class RegistrationPage {
         Alert alert6 = driver.switchTo().alert();
         //Retrieve the Alert Message
         String alertMessage3 = alert5.getText();
+        System.out.println(alert5.getText());
         //Validate the Message
         String expectedMessage3 = "Please enter a valid email address";
         Assert.assertEquals(alertMessage3, expectedMessage3, "Alert message mismatch!");
@@ -124,6 +127,7 @@ public class RegistrationPage {
         Alert alert8 = driver.switchTo().alert();
         //Retrieve the Alert Message
         String alertMessage4 = alert7.getText();
+        System.out.println(alert7.getText());
         //Validate the Message
         String expectedMessage4 = "Password must be at least 8 characters long";
         Assert.assertEquals(alertMessage4, expectedMessage4, "Alert message mismatch!");
