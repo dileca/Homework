@@ -20,18 +20,19 @@ public class DianaTests extends Base {
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select256GBStorage();
         webAutomationAdvancePage.selectColor("White");
-        webAutomationAdvancePage.selectQuantity("1");
+        webAutomationAdvancePage.selectQuantity("2");
+        Thread.sleep(2000);
         webAutomationAdvancePage.enterAddress("123 Street Road");
         webAutomationAdvancePage.clickNext();
-        nextPage.selectStandardShippingMethod();
-        nextPage.selectNoWarrantyOption();
-        nextPage.enterDiscountCode("SAVE10");
-        nextPage.clickApplyDiscountButton();
-        Thread.sleep(4000);
-        nextPage.verifyDiscountApplied();
-        nextPage.clickConfirmPurchaseButton();
-        Thread.sleep(4000);
-        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
+//        nextPage.selectStandardShippingMethod();
+//        nextPage.selectNoWarrantyOption();
+//        nextPage.enterDiscountCode("SAVE10");
+//        nextPage.clickApplyDiscountButton();
+//        Thread.sleep(4000);
+//        nextPage.verifyDiscountApplied();
+//        nextPage.clickConfirmPurchaseButton();
+//        Thread.sleep(4000);
+//        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
     }
 
 

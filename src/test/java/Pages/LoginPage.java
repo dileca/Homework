@@ -32,6 +32,9 @@ public class LoginPage {
     @FindBy(id = "signup-toggle")
     WebElement signUpHereLink_id;
 
+    @FindBy(id = "nav-btn-overview")
+    WebElement homeTab_id;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -74,6 +77,10 @@ public class LoginPage {
         Assert.assertEquals(alertMessage, expectedMessage, "Alert message mismatch!");
         //Click OK
         alert2.accept();
+    }
+
+    public void clickHomeTab() {
+        homeTab_id.click();
     }
 
 

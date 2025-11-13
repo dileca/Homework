@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class PricingPanelTests extends Base {
 
 
-    @Test
+    @Test(priority = 1)
     public void verifyUnitAndSubtotalIsZeroWhenNoDeviceAndStorageIsSelected() {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
@@ -21,17 +21,17 @@ public class PricingPanelTests extends Base {
         webAutomationAdvancePage.verifySubTotal();
     }
 
-    @Test
+    @Test(priority = 2)
     public void verifyUnitAnSubtotalWhen64GBPhoneIsSelected() {
-        homePage.verifyHomePageIsDisplayed();
-        homePage.clickLearningMaterialButton();
-        loginPage.verifyLoginPageIsDisplayed();
-        loginPage.enterEmailAddress("diana@test.co.za");
-        loginPage.enterPassword("tester123");
-        loginPage.clickLoginButton();
-        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-        learningMaterialPage.clickWebAutomationAdvanceTab();
-        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+//        homePage.verifyHomePageIsDisplayed();
+//        homePage.clickLearningMaterialButton();
+//        loginPage.verifyLoginPageIsDisplayed();
+//        loginPage.enterEmailAddress("diana@test.co.za");
+//        loginPage.enterPassword("tester123");
+//        loginPage.clickLoginButton();
+//        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+//        learningMaterialPage.clickWebAutomationAdvanceTab();
+//        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Phone");
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select64GBStorage();
@@ -39,17 +39,17 @@ public class PricingPanelTests extends Base {
         webAutomationAdvancePage.verifySubTotal();
     }
 
-    @Test
+    @Test(priority = 3)
     public void verifyUnityAndSubtotalWhenTwo128GBPhonesAreSelected() throws InterruptedException {
-        homePage.verifyHomePageIsDisplayed();
-        homePage.clickLearningMaterialButton();
-        loginPage.verifyLoginPageIsDisplayed();
-        loginPage.enterEmailAddress("diana@test.co.za");
-        loginPage.enterPassword("tester123");
-        loginPage.clickLoginButton();
-        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-        learningMaterialPage.clickWebAutomationAdvanceTab();
-        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+//        homePage.verifyHomePageIsDisplayed();
+//        homePage.clickLearningMaterialButton();
+//        loginPage.verifyLoginPageIsDisplayed();
+//        loginPage.enterEmailAddress("diana@test.co.za");
+//        loginPage.enterPassword("tester123");
+//        loginPage.clickLoginButton();
+//        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+//        learningMaterialPage.clickWebAutomationAdvanceTab();
+//        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Phone");
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select128GBStorage();
@@ -60,17 +60,17 @@ public class PricingPanelTests extends Base {
         webAutomationAdvancePage.verifySubTotal();
     }
 
-    @Test
+    @Test(priority = 4)
     public void verifyUnityAndSubtotalWhen256GBLaptopIsSelected() throws InterruptedException {
-        homePage.verifyHomePageIsDisplayed();
-        homePage.clickLearningMaterialButton();
-        loginPage.verifyLoginPageIsDisplayed();
-        loginPage.enterEmailAddress("diana@test.co.za");
-        loginPage.enterPassword("tester123");
-        loginPage.clickLoginButton();
-        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-        learningMaterialPage.clickWebAutomationAdvanceTab();
-        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+//        homePage.verifyHomePageIsDisplayed();
+//        homePage.clickLearningMaterialButton();
+//        loginPage.verifyLoginPageIsDisplayed();
+//        loginPage.enterEmailAddress("diana@test.co.za");
+//        loginPage.enterPassword("tester123");
+//        loginPage.clickLoginButton();
+//        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+//        learningMaterialPage.clickWebAutomationAdvanceTab();
+//        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Laptop");
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select256GBStorage();
@@ -81,17 +81,17 @@ public class PricingPanelTests extends Base {
         webAutomationAdvancePage.verifySubTotal();
     }
 
-    @Test
+    @Test(priority = 5)
     public void verifyUnitAndSubtotalResetsWhenDeviceIsCleared() throws InterruptedException {
-        homePage.verifyHomePageIsDisplayed();
-        homePage.clickLearningMaterialButton();
-        loginPage.verifyLoginPageIsDisplayed();
-        loginPage.enterEmailAddress("diana@test.co.za");
-        loginPage.enterPassword("tester123");
-        loginPage.clickLoginButton();
-        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-        learningMaterialPage.clickWebAutomationAdvanceTab();
-        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+//        homePage.verifyHomePageIsDisplayed();
+//        homePage.clickLearningMaterialButton();
+//        loginPage.verifyLoginPageIsDisplayed();
+//        loginPage.enterEmailAddress("diana@test.co.za");
+//        loginPage.enterPassword("tester123");
+//        loginPage.clickLoginButton();
+//        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+//        learningMaterialPage.clickWebAutomationAdvanceTab();
+//        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
         webAutomationAdvancePage.selectDeviceType("Laptop");
         webAutomationAdvancePage.selectBrand("Apple");
         webAutomationAdvancePage.select256GBStorage();

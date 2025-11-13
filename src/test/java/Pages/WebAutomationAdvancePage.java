@@ -136,5 +136,9 @@ public class WebAutomationAdvancePage {
         System.out.println(stringCartQuantity);
     }
 
+    public void Formulae() {
+
+    }
+
 
 }

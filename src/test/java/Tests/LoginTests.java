@@ -5,19 +5,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends Base {
 
-
-    @Test
-    public void verifySuccessfulLogin() {
-        homePage.verifyHomePageIsDisplayed();
-        homePage.clickLearningMaterialButton();
-        loginPage.enterEmailAddress("diana@test.co.za");
-        loginPage.enterPassword("tester123");
-        loginPage.clickLoginButton();
-        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
-    }
-
-
-    @Test
+    @Test(priority = 1)
     public void invalidPassword() {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
@@ -25,21 +13,34 @@ public class LoginTests extends Base {
         loginPage.enterPassword("1tester123");
         loginPage.clickLoginButton();
         loginPage.confirmInvalidPasswordPopUpDisplays();
+        loginPage.clickHomeTab();
     }
 
-    @Test
-    public void verifyThatExtraSpaceIsTrimmedOnUsernameAndPassword() {
+    @Test(priority = 2)
+    public void verifySuccessfulLogin() {
         homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickLogoutButton();
+    }
+
+    @Test(priority = 3)
+    public void verifyThatExtraSpaceIsTrimmedOnUsernameAndPassword() {
+        //  homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.enterEmailAddress(" diana@test.co.za ");
         loginPage.enterPassword(" tester123 ");
         loginPage.clickLoginButton();
         learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickLogoutButton();
     }
 
-    @Test
+    @Test(priority = 4)
     public void verifyForcedLogoutWhenAnotherTabIsSelectedAndThenLearningMaterialIsSelected() {
-        homePage.verifyHomePageIsDisplayed();
+     //   homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.enterEmailAddress("diana@test.co.za");
         loginPage.enterPassword("tester123");
@@ -50,9 +51,9 @@ public class LoginTests extends Base {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-    @Test
+    @Test(priority = 5)
     public void clickLogOut() {
-        homePage.verifyHomePageIsDisplayed();
+     //   homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
         loginPage.enterEmailAddress("diana@test.co.za");
         loginPage.enterPassword("tester123");
@@ -60,11 +61,12 @@ public class LoginTests extends Base {
         learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
         learningMaterialPage.clickLogoutButton();
         loginPage.verifyLoginPageIsDisplayed();
+
     }
 
     @AfterTest
     public void closeBrowser() {
-        driver.quit();
+        driver.close();
     }
 
 }

@@ -48,22 +48,27 @@ public class RegistrationPage {
     }
 
     public void enterFirstName(String firstName) {
+        firstNameTextBox_id.clear();
         firstNameTextBox_id.sendKeys(firstName);
     }
 
     public void enterLastName(String lastName) {
+        lastNameTextBox_id.clear();
         lastNameTextBox_id.sendKeys(lastName);
     }
 
     public void enterEmail(String email) {
+        emailTextBox_id.clear();
         emailTextBox_id.sendKeys(email);
     }
 
     public void enterPassword(String password) {
+        passwordTextBox_id.clear();
         passwordTextBox_id.sendKeys(password);
     }
 
     public void confirmPassword(String password) {
+        confirmPasswordTextBox_id.clear();
         confirmPasswordTextBox_id.sendKeys(password);
     }
 
