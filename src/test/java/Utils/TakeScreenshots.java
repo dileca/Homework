@@ -6,20 +6,20 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
-public class TakeScreenshots {
+//public class TakeScreenshots {
 
-    private static final String screenshotDir = System.getProperty("user.dir") + "/Screenshots";
-
-    public void takesSnapShot(WebDriver driver, String screenshotName) {
-        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-        File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
-        File destination = new File(screenshotDir, screenshotName + ".jpeg");
-
-        try {
-            FileUtils.copyFile(src, destination);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
+//    private static final String screenshotDir = System.getProperty("user.dir") + "/Screenshots";
+//
+//    public void takesSnapShot(WebDriver driver, String screenshotName) {
+//        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+//        File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
+//        File destination = new File(screenshotDir, screenshotName + ".jpeg");
+//
+//        try {
+//            FileUtils.copyFile(src, destination);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//}
 

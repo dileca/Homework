@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.NextPage;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class AddToCartTests extends Base {
@@ -150,18 +151,21 @@ public class AddToCartTests extends Base {
         webAutomationAdvancePage.verifyGrandTotal();
     }
 
-        @Test(priority = 5)
-        public void addWithoutStorage() {
-            webAutomationAdvancePage.selectDeviceType("Laptop");
-            webAutomationAdvancePage.selectBrand("Macbook pro");
-            webAutomationAdvancePage.selectColor("Gold");
-            webAutomationAdvancePage.selectQuantity("1");
-            webAutomationAdvancePage.enterAddress("123 Street Road");
-            webAutomationAdvancePage.verifyCartQuantity();
-            webAutomationAdvancePage.verifyGrandTotal();
-        }
+    @Test(priority = 5)
+    public void addWithoutStorage() {
+        webAutomationAdvancePage.selectDeviceType("Laptop");
+        webAutomationAdvancePage.selectBrand("Macbook pro");
+        webAutomationAdvancePage.selectColor("Gold");
+        webAutomationAdvancePage.selectQuantity("1");
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.verifyCartQuantity();
+        webAutomationAdvancePage.verifyGrandTotal();
+    }
 
-
+    @AfterTest
+    public void closeBrowser() {
+        driver.quit();
+    }
 
 }
 

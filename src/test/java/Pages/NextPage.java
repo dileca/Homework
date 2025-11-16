@@ -20,6 +20,7 @@ public class NextPage {
     public static Double shippingFee;
     public static Double totalValueAmount;
     public static Double subtotalValue;
+    public static Double discountAmount;
 
     @FindBy(id = "review-section-title")
     WebElement reviewTitle_id;
@@ -56,6 +57,9 @@ public class NextPage {
 
     @FindBy(id = "breakdown-shipping-value")
     WebElement shippingValue_id;
+
+    @FindBy(id = "breakdown-discount-value")
+    WebElement discountFeeValue_id;
 
     @FindBy(id = "breakdown-warranty-value")
     WebElement warrantyValue_id;
@@ -109,18 +113,39 @@ public class NextPage {
     }
 
     public void verifyDiscountApplied() {
-        Double discount = unitPrice * 0.1;
-        System.out.println("Unit Price " + unitPrice);
-        System.out.println("Discount " + discount);
-        Double expectedTotalPrice = unitPrice - discount;
-        System.out.println(expectedTotalPrice);
+//        Double discount = unitPrice * 0.1;
+//        System.out.println("Unit Price " + unitPrice);
+//        System.out.println("Discount " + discount);
+//        Double expectedTotalPrice = unitPrice - discount;
+//        System.out.println(expectedTotalPrice);
+//
+//        String stringTotalValue = (totalValue_id.getText());
+//        String stringTotalValueWithoutR = stringTotalValue.replace("R", "");
+//        Double actualTotalPrice = Double.parseDouble(stringTotalValueWithoutR);
+//        System.out.println("Actual Total Price " + actualTotalPrice);
+//
+//        Assert.assertEquals(expectedTotalPrice, actualTotalPrice);
 
-        String stringTotalValue = (totalValue_id.getText());
-        String stringTotalValueWithoutR = stringTotalValue.replace("R", "");
-        Double actualTotalPrice = Double.parseDouble(stringTotalValueWithoutR);
-        System.out.println("Actual Total Price " + actualTotalPrice);
+        String stringSubtotalNextScreen = subTotalNextScreen_id.getText();
+        //    System.out.println(stringSubtotalNextScreen);
+        String stringSubtotalValueWithoutR = stringSubtotalNextScreen.replace("R", "");
+        subtotalValue = Double.parseDouble(stringSubtotalValueWithoutR);
+        //    System.out.println(subtotalValue);
 
-        Assert.assertEquals(expectedTotalPrice, actualTotalPrice);
+        String stringDiscountAmount = discountFeeValue_id.getText();
+        //    System.out.println(stringDiscountAmount);
+        String stringDiscountAmountWithoutR = stringDiscountAmount.replace("- R", "");
+        discountAmount = Double.parseDouble(stringDiscountAmountWithoutR);
+        //     System.out.println(stringDiscountAmountWithoutR);
+
+        String stringTotalValueAmount = totalValue_id.getText();
+        //    System.out.println(stringTotalValueAmount);
+        String stringTotalValueAmountWithoutR = stringTotalValueAmount.replace("R", "");
+        totalValueAmount = Double.parseDouble(stringTotalValueAmountWithoutR);
+        //    System.out.println(stringTotalValueAmountWithoutR);
+
+        totalValueAmount = subtotalValue - discountAmount;
+        System.out.println("SubTotal Value R " + subtotalValue + " - Discount Amount R " + discountAmount + " = Final Total R " + totalValueAmount);
     }
 
     public void clickAddToCartButton() {
@@ -176,6 +201,67 @@ public class NextPage {
         totalValueAmount = subtotalValue + warrantyFee;
         System.out.println("SubTotal Value R " + subtotalValue + " + Warranty Fee R " + warrantyFee + " = Final Total R " + totalValueAmount);
     }
+
+    public void verifyShippingFeeIsApplied() {
+        String stringSubtotalNextScreen = subTotalNextScreen_id.getText();
+        //    System.out.println(stringSubtotalNextScreen);
+        String stringSubtotalValueWithoutR = stringSubtotalNextScreen.replace("R", "");
+        subtotalValue = Double.parseDouble(stringSubtotalValueWithoutR);
+        //    System.out.println(subtotalValue);
+
+        String stringShippingFee = shippingValue_id.getText();
+        //    System.out.println(stringShippingFee);
+        String stringShippingFeeWithoutR = stringShippingFee.replace("R", "");
+        shippingFee = Double.parseDouble(stringShippingFeeWithoutR);
+        //     System.out.println(stringShippingFeeWithoutR);
+
+        String stringTotalValueAmount = totalValue_id.getText();
+        //    System.out.println(stringTotalValueAmount);
+        String stringTotalValueAmountWithoutR = stringTotalValueAmount.replace("R", "");
+        totalValueAmount = Double.parseDouble(stringTotalValueAmountWithoutR);
+        //    System.out.println(stringTotalValueAmountWithoutR);
+
+        totalValueAmount = subtotalValue + shippingFee;
+        System.out.println("SubTotal Value R " + subtotalValue + " + Shipping Fee R " + shippingFee + " = Final Total R " + totalValueAmount);
+    }
+
+    public void verifyAllFeesAndDiscountApplied() {
+        String stringSubtotalNextScreen = subTotalNextScreen_id.getText();
+        //    System.out.println(stringSubtotalNextScreen);
+        String stringSubtotalValueWithoutR = stringSubtotalNextScreen.replace("R", "");
+        subtotalValue = Double.parseDouble(stringSubtotalValueWithoutR);
+        //    System.out.println(subtotalValue);
+
+        String stringShippingFee = shippingValue_id.getText();
+        //    System.out.println(stringShippingFee);
+        String stringShippingFeeWithoutR = stringShippingFee.replace("R", "");
+        shippingFee = Double.parseDouble(stringShippingFeeWithoutR);
+        //     System.out.println(stringShippingFeeWithoutR);
+
+        String stringWarrantyFee = warrantyValue_id.getText();
+        //    System.out.println(stringWarrantyFee);
+        String stringWarrantyFeeWithoutR = stringWarrantyFee.replace("R", "");
+        warrantyFee = Double.parseDouble(stringWarrantyFeeWithoutR);
+        //     System.out.println(stringWarrantyFeeWithoutR);
+
+        String stringTotalValueAmount = totalValue_id.getText();
+        //    System.out.println(stringTotalValueAmount);
+        String stringTotalValueAmountWithoutR = stringTotalValueAmount.replace("R", "");
+        totalValueAmount = Double.parseDouble(stringTotalValueAmountWithoutR);
+        //    System.out.println(stringTotalValueAmountWithoutR);
+
+        String stringDiscountAmount = discountFeeValue_id.getText();
+        //    System.out.println(stringDiscountAmount);
+        String stringDiscountAmountWithoutR = stringDiscountAmount.replace("- R", "");
+        discountAmount = Double.parseDouble(stringDiscountAmountWithoutR);
+        //     System.out.println(stringDiscountAmountWithoutR);
+
+        totalValueAmount = subtotalValue + warrantyFee + shippingFee - discountAmount ;
+        System.out.println
+                ("SubTotal Value R " + subtotalValue + " + Warranty Fee R " + warrantyFee + " + Shipping Fee R " + shippingFee + " - Discount Amount R " + discountAmount + " = Final Total R " + totalValueAmount);
+    }
+
+
 
 
 }

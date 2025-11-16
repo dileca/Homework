@@ -37,6 +37,90 @@ public class DianaTests extends Base {
     }
 
 
+
+    public void verifyWarrantyFeeIsAdded() throws InterruptedException {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.selectDeviceType("Phone");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("2");
+        Thread.sleep(2000);
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.verifySubTotalAmount();
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectStandardShippingMethod();
+        nextPage.select2YearWarrantyOption();
+        nextPage.verifyWarrantyFeeIsApplied();
+        nextPage.clickConfirmPurchaseButton();
+        Thread.sleep(4000);
+        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
+    }
+
+    public void verifyShippingFeeIsAdded() throws InterruptedException {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.selectDeviceType("Phone");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("2");
+        Thread.sleep(2000);
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.verifySubTotalAmount();
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectExpressShippingMethod();
+        nextPage.selectNoWarrantyOption();
+        nextPage.verifyShippingFeeIsApplied();
+        nextPage.clickConfirmPurchaseButton();
+        Thread.sleep(4000);
+        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
+    }
+
+    public void verifyDiscountCodeIsApplied() throws InterruptedException {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.selectDeviceType("Phone");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select256GBStorage();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("2");
+        Thread.sleep(2000);
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.verifySubTotalAmount();
+        webAutomationAdvancePage.clickNext();
+        nextPage.selectStandardShippingMethod();
+        nextPage.selectNoWarrantyOption();
+        nextPage.enterDiscountCode("SAVE20");
+        nextPage.clickApplyDiscountButton();
+        nextPage.clickConfirmPurchaseButton();
+        nextPage.verifyDiscountApplied();
+        Thread.sleep(4000);
+        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
+    }
+
     public void formulaCheck() throws InterruptedException {
         homePage.verifyHomePageIsDisplayed();
         homePage.clickLearningMaterialButton();
@@ -55,17 +139,17 @@ public class DianaTests extends Base {
         webAutomationAdvancePage.enterAddress("123 Street Road");
         webAutomationAdvancePage.verifySubTotalAmount();
         webAutomationAdvancePage.clickNext();
-//        nextPage.selectExpressShippingMethod();
+        nextPage.selectExpressShippingMethod();
         nextPage.select1YearWarrantyOption();
-        nextPage.verifyWarrantyFeeIsApplied();
-//        nextPage.enterDiscountCode("SAVE10");
-//        nextPage.clickApplyDiscountButton();
+        nextPage.enterDiscountCode("SAVE10");
+        nextPage.clickApplyDiscountButton();
         Thread.sleep(4000);
-        //    nextPage.verifyDiscountApplied();
+        nextPage.verifyAllFeesAndDiscountApplied();
         nextPage.clickConfirmPurchaseButton();
         Thread.sleep(4000);
         webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
     }
+
 
 
 

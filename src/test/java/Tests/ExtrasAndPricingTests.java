@@ -84,10 +84,12 @@ public class ExtrasAndPricingTests extends Base {
         nextPage.enterDiscountCode("SAVE10");
         nextPage.clickApplyDiscountButton();
         Thread.sleep(4000);
-    //    nextPage.verifyDiscountApplied();
+        nextPage.verifyAllFeesAndDiscountApplied();
         nextPage.clickConfirmPurchaseButton();
         Thread.sleep(4000);
         webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
+
+
     }
 
 

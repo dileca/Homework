@@ -72,6 +72,22 @@ public class WebAutomationAdvancePage {
     @FindBy(id = "cart-grand-total")
     WebElement grandTotal_id;
 
+    @FindBy(id = "review-cart-btn")
+    WebElement reviewCartOrderButton_id;
+
+    @FindBy(id = "confirm-cart-btn")
+    WebElement placeOrderButton_id;
+
+    @FindBy(id = "cancel-cart-btn")
+    WebElement cancelButton_id;
+
+    @FindBy(id = "cart-confirm-panel")
+    WebElement infoPanel_id;
+
+    @FindBy(xpath = "css=p:nth-child(2)")
+    WebElement successMessage_id;
+
+
 
     public WebAutomationAdvancePage(WebDriver driver) {
         this.driver = driver;
@@ -145,9 +161,7 @@ public class WebAutomationAdvancePage {
         String stringExpectedTotalValueWithoutR = stringExpectedTotalValue.replace("R", "");
         Double expectedTotalValue = Double.parseDouble(stringExpectedTotalValueWithoutR);
         Assert.assertEquals(expectedTotalValue,subTotalValue);
-        System.out.println("Unit Price " +unitPrice+ " x Quantity Amount of " +quantity+ " = Subtotal Amount " +subTotalValue);
-
-
+        System.out.println("Unit Price R " +unitPrice+ " x Quantity Amount of " +quantity+ " = Subtotal Amount R " +subTotalValue);
     }
 
     public void clickNext() {
@@ -156,6 +170,7 @@ public class WebAutomationAdvancePage {
 
     public void verifySuccessfulOrderToastDisplayed() {
         orderSuccessfulToast_id.isDisplayed();
+        //System.out.println(successMessage_id.getText());
     }
 
     public void verifyCartQuantity() {
@@ -179,6 +194,39 @@ public class WebAutomationAdvancePage {
     public void verifyGrandTotal() {
         grandTotal_id.getText();
         System.out.println(grandTotal_id.getText());
+    }
+
+    public void clickReviewCartOrderButton() {
+        reviewCartOrderButton_id.click();
+    }
+
+    public void verifyPlaceOrderButtonDisplays() {
+        placeOrderButton_id.isDisplayed();
+        System.out.println(placeOrderButton_id.getText() + " button displays");
+    }
+
+    public void verifyCancelButtonIsDisplayed() {
+        cancelButton_id.isDisplayed();
+        System.out.println(cancelButton_id.getText() + " button displays");
+    }
+
+    public void verifyInfoPanelDisplayed() {
+        infoPanel_id.isDisplayed();
+        System.out.println(infoPanel_id.getText());
+    }
+
+    public void clickCancelButton() {
+        cancelButton_id.click();
+    }
+
+    public void verifyReviewCartOrderButtonIsDisplayed() {
+        reviewCartOrderButton_id.isDisplayed();
+        System.out.println(reviewCartOrderButton_id.getText() + " button displays");
+    }
+
+    public void clickPlaceOrderButton() {
+        placeOrderButton_id.click();
+
     }
 
 
