@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -14,6 +15,8 @@ public class WebAutomationAdvancePage {
     WebDriver driver;
 
     public static Double unitPrice;
+    public static Double quantity;
+    public static Double subTotalValue;
 
     @FindBy(id = "inventory-title")
     WebElement inventoryHeader_id;
@@ -52,13 +55,22 @@ public class WebAutomationAdvancePage {
     WebElement unitPriceValue_id;
 
     @FindBy(id = "quantity-label")
-    WebElement qty_id;
+    WebElement qtyLabel_id;
 
     @FindBy(id = "subtotal-value")
-    WebElement subtotal_id;
+    WebElement subtotalValue_id;
 
     @FindBy(id = "cart-title")
     WebElement cartQuantity_id;
+
+    @FindBy(xpath = "//*[starts-with(@id, 'cart-item-discount')]")
+    WebElement cartItemDiscount_id;
+
+    @FindBy(xpath = "(//button[@aria-label='Remove item'])[1]")
+    WebElement cartRemoveButton_id;
+
+    @FindBy(id = "cart-grand-total")
+    WebElement grandTotal_id;
 
 
     public WebAutomationAdvancePage(WebDriver driver) {
@@ -104,26 +116,41 @@ public class WebAutomationAdvancePage {
         deliveryAddressTextBox_id.sendKeys(address);
     }
 
-    public void verifyUnitPrice() {
+    public void verifyUnitPriceIsZero() {
         String stringUnitPrice = unitPriceValue_id.getText();
         System.out.println(stringUnitPrice);
     }
 
-    public void verifySubTotal() {
-        String stringSubtotal = subtotal_id.getText();
+    public void verifySubTotalIsZero() {
+        String stringSubtotal = subtotalValue_id.getText();
         System.out.println(stringSubtotal);
     }
 
-    public void clickNext() {
+    public void verifySubTotalAmount() {
         String stringUnitPrice = unitPriceValue_id.getText();
-        System.out.println(stringUnitPrice);
+    //    System.out.println(stringUnitPrice);
 
         String stringUnitPriceWithoutR = stringUnitPrice.replace("R", "");
-        System.out.println(stringUnitPriceWithoutR);
+    //    System.out.println(stringUnitPriceWithoutR);
+
+        String stringQuantity = qtyLabel_id.getText();
+        String stringQuantityWithoutQty = stringQuantity.replace("Qty: ", "");
+        quantity = Double.parseDouble(stringQuantityWithoutQty);
+    //    System.out.println("Quantity " +quantity);
 
         unitPrice = Double.parseDouble(stringUnitPriceWithoutR);
-        System.out.println(unitPrice);
+        subTotalValue = unitPrice * quantity;
 
+        String stringExpectedTotalValue = subtotalValue_id.getText();
+        String stringExpectedTotalValueWithoutR = stringExpectedTotalValue.replace("R", "");
+        Double expectedTotalValue = Double.parseDouble(stringExpectedTotalValueWithoutR);
+        Assert.assertEquals(expectedTotalValue,subTotalValue);
+        System.out.println("Unit Price " +unitPrice+ " x Quantity Amount of " +quantity+ " = Subtotal Amount " +subTotalValue);
+
+
+    }
+
+    public void clickNext() {
         nextButton_id.click();
     }
 
@@ -136,9 +163,27 @@ public class WebAutomationAdvancePage {
         System.out.println(stringCartQuantity);
     }
 
-    public void Formulae() {
-
+    public void verifyDiscountMessageDisplaysInCart() {
+        cartItemDiscount_id.getText();
+        System.out.println("The Discount message displayed in the Cart is " + cartItemDiscount_id.getText());
     }
+
+    public void removeItemFromCart() {
+        cartRemoveButton_id.click();
+    }
+
+    public void clearQuantity() {
+        quantityTextBox_id.clear();
+    }
+
+    public void verifyGrandTotal() {
+        grandTotal_id.getText();
+        System.out.println(grandTotal_id.getText());
+    }
+
+
+
+
 
 
 }

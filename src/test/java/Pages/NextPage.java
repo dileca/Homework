@@ -15,6 +15,12 @@ public class NextPage {
 
     WebDriver driver;
 
+
+    public static Double warrantyFee;
+    public static Double shippingFee;
+    public static Double totalValueAmount;
+    public static Double subtotalValue;
+
     @FindBy(id = "review-section-title")
     WebElement reviewTitle_id;
 
@@ -57,6 +63,12 @@ public class NextPage {
     @FindBy(id = "discount-feedback")
     WebElement discountAppliedMessage_id;
 
+    @FindBy(id = "inventory-back-btn")
+    WebElement backButton_id;
+
+    @FindBy(id = "breakdown-subtotal-value")
+    WebElement subTotalNextScreen_id;
+
 
     public NextPage(WebDriver driver) {
         this.driver = driver;
@@ -98,14 +110,15 @@ public class NextPage {
 
     public void verifyDiscountApplied() {
         Double discount = unitPrice * 0.1;
-        System.out.println(discount);
+        System.out.println("Unit Price " + unitPrice);
+        System.out.println("Discount " + discount);
         Double expectedTotalPrice = unitPrice - discount;
         System.out.println(expectedTotalPrice);
 
         String stringTotalValue = (totalValue_id.getText());
         String stringTotalValueWithoutR = stringTotalValue.replace("R", "");
         Double actualTotalPrice = Double.parseDouble(stringTotalValueWithoutR);
-        System.out.println(actualTotalPrice);
+        System.out.println("Actual Total Price " + actualTotalPrice);
 
         Assert.assertEquals(expectedTotalPrice, actualTotalPrice);
     }
@@ -120,21 +133,48 @@ public class NextPage {
 
     public void verifyShippingChargeInPricingBreakdown() {
         shippingValue_id.getText();
-        System.out.println(shippingValue_id.getText());
+        System.out.println("The Shipping Fee applied is " + shippingValue_id.getText());
     }
 
     public void verifyWarrantyChargeInPricingBreakdown() {
         warrantyValue_id.getText();
-        System.out.println(warrantyValue_id.getText());
+        System.out.println("The Warranty Fee applied is " + warrantyValue_id.getText());
     }
 
     public void verifyDiscountAppliedMessage() {
         discountAppliedMessage_id.getText();
-        System.out.println(discountAppliedMessage_id.getText());
+        System.out.println("The Discount applied is " + discountAppliedMessage_id.getText());
     }
 
     public void clearDiscountCodeTextBox() {
         discountCodeTextBox_id.clear();
+    }
+
+    public void clickBackButton() {
+        backButton_id.click();
+    }
+
+    public void verifyWarrantyFeeIsApplied() {
+        String stringSubtotalNextScreen = subTotalNextScreen_id.getText();
+    //    System.out.println(stringSubtotalNextScreen);
+        String stringSubtotalValueWithoutR = stringSubtotalNextScreen.replace("R", "");
+        subtotalValue = Double.parseDouble(stringSubtotalValueWithoutR);
+    //    System.out.println(subtotalValue);
+
+        String stringWarrantyFee = warrantyValue_id.getText();
+    //    System.out.println(stringWarrantyFee);
+        String stringWarrantyFeeWithoutR = stringWarrantyFee.replace("R", "");
+        warrantyFee = Double.parseDouble(stringWarrantyFeeWithoutR);
+   //     System.out.println(stringWarrantyFeeWithoutR);
+
+        String stringTotalValueAmount = totalValue_id.getText();
+    //    System.out.println(stringTotalValueAmount);
+        String stringTotalValueAmountWithoutR = stringTotalValueAmount.replace("R", "");
+        totalValueAmount = Double.parseDouble(stringTotalValueAmountWithoutR);
+    //    System.out.println(stringTotalValueAmountWithoutR);
+
+        totalValueAmount = subtotalValue + warrantyFee;
+        System.out.println("SubTotal Value R " + subtotalValue + " + Warranty Fee R " + warrantyFee + " = Final Total R " + totalValueAmount);
     }
 
 

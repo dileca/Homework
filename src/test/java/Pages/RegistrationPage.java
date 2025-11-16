@@ -37,6 +37,10 @@ public class RegistrationPage {
     @FindBy(id = "register-submit")
     WebElement createAccountButton_id;
 
+    @FindBy(id = "login-toggle")
+    WebElement loginHereHyperlink_id;
+
+
     public RegistrationPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -138,6 +142,10 @@ public class RegistrationPage {
         Assert.assertEquals(alertMessage4, expectedMessage4, "Alert message mismatch!");
         //Click OK
         alert8.accept();
+    }
+
+    public void clickLoginHereHyperlink() {
+        loginHereHyperlink_id.click();
     }
 
 }

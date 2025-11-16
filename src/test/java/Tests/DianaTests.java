@@ -23,6 +23,7 @@ public class DianaTests extends Base {
         webAutomationAdvancePage.selectQuantity("2");
         Thread.sleep(2000);
         webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.verifySubTotalAmount();
         webAutomationAdvancePage.clickNext();
 //        nextPage.selectStandardShippingMethod();
 //        nextPage.selectNoWarrantyOption();
@@ -34,6 +35,38 @@ public class DianaTests extends Base {
 //        Thread.sleep(4000);
 //        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
     }
+
+
+    public void formulaCheck() throws InterruptedException {
+        homePage.verifyHomePageIsDisplayed();
+        homePage.clickLearningMaterialButton();
+        loginPage.verifyLoginPageIsDisplayed();
+        loginPage.enterEmailAddress("diana@test.co.za");
+        loginPage.enterPassword("tester123");
+        loginPage.clickLoginButton();
+        learningMaterialPage.verifyLearningMaterialPageIsDisplayed();
+        learningMaterialPage.clickWebAutomationAdvanceTab();
+        webAutomationAdvancePage.verifyWebAutomationAdvancePageIsDisplayed();
+        webAutomationAdvancePage.selectDeviceType("Phone");
+        webAutomationAdvancePage.selectBrand("Apple");
+        webAutomationAdvancePage.select128GBStorage();
+        webAutomationAdvancePage.selectColor("White");
+        webAutomationAdvancePage.selectQuantity("2");
+        webAutomationAdvancePage.enterAddress("123 Street Road");
+        webAutomationAdvancePage.verifySubTotalAmount();
+        webAutomationAdvancePage.clickNext();
+//        nextPage.selectExpressShippingMethod();
+        nextPage.select1YearWarrantyOption();
+        nextPage.verifyWarrantyFeeIsApplied();
+//        nextPage.enterDiscountCode("SAVE10");
+//        nextPage.clickApplyDiscountButton();
+        Thread.sleep(4000);
+        //    nextPage.verifyDiscountApplied();
+        nextPage.clickConfirmPurchaseButton();
+        Thread.sleep(4000);
+        webAutomationAdvancePage.verifySuccessfulOrderToastDisplayed();
+    }
+
 
 
     @AfterTest
